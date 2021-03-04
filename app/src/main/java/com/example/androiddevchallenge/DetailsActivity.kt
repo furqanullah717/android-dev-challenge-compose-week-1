@@ -15,30 +15,23 @@
  */
 package com.example.androiddevchallenge
 
+import Animals
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.runtime.Composable
-import com.example.androiddevchallenge.screens.HomeScreen
+import com.example.androiddevchallenge.screens.DetailScreen
 import com.example.androiddevchallenge.ui.theme.MyTheme
-import com.example.androiddevchallenge.utils.Utils
 
-class MainActivity : AppCompatActivity() {
+class DetailsActivity : AppCompatActivity() {
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val data = intent.getSerializableExtra("data") as Animals
         setContent {
             MyTheme {
-                MyApp(this)
+                DetailScreen(data)
             }
         }
     }
-}
-@ExperimentalAnimationApi
-@Composable
-fun MyApp(activity: MainActivity) {
-    val data = Utils.getData(activity = activity)
-    HomeScreen(data, activity)
-
 }
